@@ -1,25 +1,12 @@
-import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+import Header from "../../components/header/Header";
+
+const H1style = "bg-red-500 rounded-3xl p-4 m-4 hover:scale-110 transition-all";
 
 export default function Home() {
-  const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-
   return (
-    <GoogleOAuthProvider clientId={googleClientId}>
-      <GoogleLogin
-        onSuccess={(response) => {
-          console.log("Login Success:", response);
-          fetch("http://localhost:8000/auth/google", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ token: response.credential }),
-          })
-            .then((res) => res.json())
-            .then((data) => console.log("Backend response:", data));
-        }}
-        onError={() => {
-          console.log("Login Failed");
-        }}
-      />
-    </GoogleOAuthProvider>
+    <>
+      <Header />
+      <h1 className={H1style}>Hola</h1>
+    </>
   );
 }
