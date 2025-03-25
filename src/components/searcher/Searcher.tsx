@@ -5,7 +5,7 @@ import {
   function Searcher() {
     return (
       <>
-        <div className="min-h-screen mt-32">
+        <div className="fixed top-0 left-0 mt-32 lg:mt-20">
           <div className="flex justify-center min-w-screen">
             <div className="w-full max-w-4xl px-4 relative">
               <input
