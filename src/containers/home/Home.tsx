@@ -1,13 +1,11 @@
 import Header from "../../components/header/Header";
-import Searcher from "../../components/searcher/Searcher"; // Asegúrate de importar el nuevo componente Searcher
-import Products from "../products/Products";
+import ProductPage from "../product page/ProductsPage";
 
 export default function Home() {
   return (
     <>
       <Header />
-      <Searcher />
-      <Products />
+      <ProductPage />
     </>
   );
 }
