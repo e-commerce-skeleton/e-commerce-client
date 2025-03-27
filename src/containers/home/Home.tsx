@@ -1,11 +1,7 @@
-import Header from "../../components/header/Header";
-import ProductPage from "../product page/ProductsPage";
+import HomeLayout from "./components/HomeLayout";
 
 export default function Home() {
-  return (
-    <>
-      <Header />
-      <ProductPage />
-    </>
-  );
+  //logica 200 lineas
+
+  return <HomeLayout />;
 }
