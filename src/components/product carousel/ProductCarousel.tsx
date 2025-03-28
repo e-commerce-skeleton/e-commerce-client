@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import Product from "../product/Product";
+import { LeftArrowButton, RightArrowButton } from "../buttons/ArrowButtons";
 
 interface ProductProps {
   prodId: string;
@@ -57,11 +58,11 @@ const ProductCarousel = ({ products, title }: ProductCarouselProps) => {
   };
 
   return (
-    <div className="w-screen flex flex-col items-center bg-gray-100">
-      <h2 className="text-3xl text-black font-bold">{title}</h2>
+    <div className="w-screen flex flex-col items-center bg-gray-100 relative">
+      <div className="text-4xl text-black font-bold">{title}</div>
       <div
         ref={carouselRef}
-        className="w-full flex flex-row items-center justify-start overflow-hidden"
+        className="w-full flex flex-row items-center justify-start overflow-hidden relative"
       >
         <AnimatePresence mode="wait">
           <motion.div
@@ -82,10 +83,14 @@ const ProductCarousel = ({ products, title }: ProductCarouselProps) => {
               ))}
           </motion.div>
         </AnimatePresence>
-      </div>
-      <div className="flex flex-row m-10">
-        <button onClick={prevSlide}>prev</button>
-        <button onClick={nextSlide}>next</button>
+        
+        {/* Botones Left y Right dentro del carrusel */}
+        <div className="absolute left-10 top-3/7 transform -translate-y-1/2">
+          <LeftArrowButton onClickFunctions={[prevSlide]} />
+        </div>
+        <div className="absolute right-10 top-3/7 transform -translate-y-1/2">
+          <RightArrowButton onClickFunctions={[nextSlide]} />
+        </div>
       </div>
     </div>
   );

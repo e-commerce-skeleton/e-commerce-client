@@ -20,7 +20,7 @@ interface ProductProps {
           alt={product.altText}
           className="w-full h-112 object-cover border-1 border-gray-300"
         />
-        <h2 className=" text-black  mt-1 text-left">{product.name}</h2>
+        <div className=" text-black  mt-1 text-left">{product.name}</div>
         <div className="flex items-center gap-2">
           <span className="text-xl text-gray-700 font-bold">${product.currentPrice}</span>
           {product.prevPrice && (
