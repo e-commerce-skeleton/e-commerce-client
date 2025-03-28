@@ -14,21 +14,21 @@ const sampleProducts = Array.from({ length: 20 }, (_, i) => ({
   catId: `cat-${(i % 5) + 1}`,
   imgUrl: `https://placehold.co/300x300?text=Producto+${i + 1}`,
   altText: `Product ${i + 1}`,
-  name: `Producto ${i + 1}`,
+  name: `Product ${i + 1}`,
   currentPrice: (i + 1) * 1000,
   prevPrice: i % 2 === 0 ? (i + 1) * 1200 : null,
-  paymentMethod: i % 2 !== 0 ? "3 cuotas sin interés" : null,
+  paymentMethod: i % 3 === 0 ? "3 cuotas sin interés" : null,
   detail: i % 3 === 0 ? "Oferta especial" : null,
 }));
 
 
   return (
-    <div className="bg-white h-screen">
+    <div>
       <Header />
       {/* <div className="p-4">
         <Carousel images={images} />
       </div> */}
-      <div className="p-35">
+      <div className="mt-30">
         <ProductCarousel products={sampleProducts} title='Destacados'/>
       </div>
     <Footer />

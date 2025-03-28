@@ -14,11 +14,11 @@ interface ProductProps {
 
   const Product = ({ product }: ProductProps) => {
     return (
-      <div className="w-full max-w-md flex flex-col items-left ">
+      <div className="w-full max-w-md flex flex-col items-left">
         <img
           src={product.imgUrl}
           alt={product.altText}
-          className="w-full h-64 object-cover"
+          className="w-full h-112 object-cover border-1 border-gray-300"
         />
         <h2 className=" text-black  mt-1 text-left">{product.name}</h2>
         <div className="flex items-center gap-2">
