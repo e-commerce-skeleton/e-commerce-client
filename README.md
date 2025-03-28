@@ -65,7 +65,7 @@ export default tseslint.config({
 //                          0           0
 //                          1           0
 
-producto = {
+product = {
     "prodId" : str not null,
     "catId" : str not null,
     "imgUrl" : str not null,
