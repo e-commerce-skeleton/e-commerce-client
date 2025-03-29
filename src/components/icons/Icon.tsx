@@ -8,6 +8,7 @@ export function OutlineUserIcon() {
     </>
   );
 }
+
 export function FilledUserIcon() {
   return (
     <>
@@ -18,6 +19,7 @@ export function FilledUserIcon() {
     </>
   );
 }
+
 export function OutlineFavoriteIcon() {
   return (
     <>
@@ -28,6 +30,7 @@ export function OutlineFavoriteIcon() {
     </>
   );
 }
+
 export function FilledFavoriteIcon() {
   return (
     <>
@@ -38,6 +41,7 @@ export function FilledFavoriteIcon() {
     </>
   );
 }
+
 export function OutlineCartIcon() {
   return (
     <>
@@ -48,6 +52,7 @@ export function OutlineCartIcon() {
     </>
   );
 }
+
 export function FilledCartIcon() {
   return (
     <>
@@ -58,6 +63,7 @@ export function FilledCartIcon() {
     </>
   );
 }
+
 export function MagnGlassIcon() {
   return (
     <>
@@ -74,3 +80,64 @@ export function MagnGlassIcon() {
     </>
   );
 }
+
+export function OutlineLeftTriangleIcon() {
+  return (
+    <>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="48"
+        height="48"
+        viewBox="0 0 24 24"
+      >
+        <path d="M14 4L6 12L14 20V4Z" fill="none" stroke="black" strokeWidth="2" />
+      </svg>
+    </>
+  );
+}
+
+export function FilledLeftTriangleIcon() {
+  return (
+    <>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="48"
+        height="48"
+        viewBox="0 0 24 24"
+      >
+        <path d="M14 4L6 12L14 20V4Z" fill="black" />
+      </svg>
+    </>
+  );
+}
+
+export function OutlineRightTriangleIcon() {
+  return (
+    <>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="48"
+        height="48"
+        viewBox="0 0 24 24"
+      >
+        <path d="M10 4L18 12L10 20V4Z" fill="none" stroke="black" strokeWidth="2" />
+      </svg>
+    </>
+  );
+}
+
+export function FilledRightTriangleIcon() {
+  return (
+    <>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="48"
+        height="48"
+        viewBox="0 0 24 24"
+      >
+        <path d="M10 4L18 12L10 20V4Z" fill="black" />
+      </svg>
+    </>
+  );
+}
+
