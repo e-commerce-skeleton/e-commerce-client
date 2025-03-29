@@ -96,12 +96,12 @@ const ProductCarousel = ({ products, title }: ProductCarouselProps) => {
         </div>
   
         {/* BUTTON LEFT */}
-        <div className="absolute left-10 top-3/7 transform -translate-y-1/2">
+        <div className="absolute left-5 top-15/50 sm:top-15/46 md:top-15/42 lg:top-15/41 xl:top-15/38 2xl:top-15/37 transform -translate-y-1/2">
           <LeftArrowButton onClickFunctions={[prevSlide]} />
         </div>
         
         {/* BUTTON RIGHT */}
-        <div className="absolute right-10 top-3/7 transform -translate-y-1/2">
+        <div className="absolute right-5 top-15/50 sm:top-15/46 md:top-15/42 lg:top-15/41 xl:top-15/38 2xl:top-15/37 transform -translate-y-1/2">
           <RightArrowButton onClickFunctions={[nextSlide]} />
         </div>
       </div>
@@ -119,9 +119,7 @@ const ProductCarousel = ({ products, title }: ProductCarouselProps) => {
         })}
       </div>
     </div>
-  );
-  
-  
+  ); 
 };
 
 export default ProductCarousel;
