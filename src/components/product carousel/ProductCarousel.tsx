@@ -30,7 +30,7 @@ const ProductCarousel = ({ products, title }: ProductCarouselProps) => {
     const updateItemsPerSlide = () => {
       if (carouselRef.current) {
         const carouselWidth = carouselRef.current.offsetWidth;
-        const productWidth = 465; // Asumimos que cada producto tiene un ancho de 300px, puedes ajustarlo
+        const productWidth = 465;
         setItemsPerSlide(Math.floor(carouselWidth / productWidth)); // Calcula cuántos productos caben sin ser fraccionados
       }
     };
@@ -45,15 +45,25 @@ const ProductCarousel = ({ products, title }: ProductCarouselProps) => {
 
   const nextSlide = () => {
     setCurrentIndex((state) => {
-      const nextIndex = state + itemsPerSlide;
-      return nextIndex < products.length ? nextIndex : 0; // Evita salir del índice
+      const nextIndex = state + 1;
+  
+      // Si hay menos productos de los que caben en pantalla, volver a 0
+      if (itemsPerSlide >= products.length) return 0;
+  
+      // Si el siguiente índice supera la cantidad de productos, volver a 0
+      return nextIndex + itemsPerSlide > products.length ? 0 : nextIndex;
     });
   };
-
+  
   const prevSlide = () => {
     setCurrentIndex((state) => {
-      const prevIndex = state - itemsPerSlide;
-      return prevIndex >= 0 ? prevIndex : products.length - itemsPerSlide; // Evita índices negativos
+      const prevIndex = state - 1;
+  
+      // Si hay menos productos de los que caben en pantalla, volver al final
+      if (itemsPerSlide >= products.length) return products.length - itemsPerSlide;
+  
+      // Si el índice es negativo, volver al final de la lista
+      return prevIndex < 0 ? products.length - itemsPerSlide : prevIndex;
     });
   };
 
@@ -67,10 +77,10 @@ const ProductCarousel = ({ products, title }: ProductCarouselProps) => {
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 0 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.2 }}
+            exit={{ opacity: 0, x: -475 }}
+            transition={{ duration: 0.3 }}
             className="w-full h-full flex flex-row justify-center"
           >
             {/* Renderiza los productos que caben en la pantalla */}
