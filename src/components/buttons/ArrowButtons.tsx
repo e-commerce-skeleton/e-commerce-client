@@ -7,6 +7,7 @@ interface ButtonWithArrowProps {
 
 const ButtonWithArrow = ({ direction, onClickFunctions = [] }: ButtonWithArrowProps) => {
   const [isClicked, setIsClicked] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   // Manejar el clic y ejecutar todas las funciones
   const handleClick = () => {
@@ -22,11 +23,26 @@ const ButtonWithArrow = ({ direction, onClickFunctions = [] }: ButtonWithArrowPr
       className={`relative flex justify-center items-center w-12 h-12 rounded-full cursor-pointer transition-transform duration-200 ease-in-out bg-neutral-400 ${
         isClicked ? 'transform scale-90' : 'transform scale-100'
       }`}
-      onClick={handleClick}>
+      onClick={handleClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       {direction === 'left' ? (
-        <span className="text-3xl font-mono font-extrabold text-white">{'<'}</span>
+        <span
+          className={`text-3xl font-mono font-extrabold text-white transition-transform duration-200 ${
+            isHovered ? 'transform -translate-x-1' : ''
+          }`}
+        >
+          {'<'}
+        </span>
       ) : (
-        <span className="text-3xl font-mono font-extrabold text-white">{'>'}</span>
+        <span
+          className={`text-3xl font-mono font-extrabold text-white transition-transform duration-200 ${
+            isHovered ? 'transform translate-x-1' : ''
+          }`}
+        >
+          {'>'}
+        </span>
       )}
     </div>
   );
