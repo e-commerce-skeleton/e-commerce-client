@@ -18,7 +18,7 @@ interface ProductProps {
         <img
           src={product.imgUrl}
           alt={product.altText}
-          className="w-full h-112 object-cover border-1 border-gray-300"
+          className="w-full h-37 sm:h-45 md:h-60 lg:h-70 xl:h-90 2xl:h-112 object-cover border-1 border-gray-300"
         />
         <div className=" text-black  mt-1 text-left">{product.name}</div>
         <div className="flex items-center gap-2">

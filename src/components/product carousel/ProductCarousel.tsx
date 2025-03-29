@@ -24,12 +24,28 @@ const ProductCarousel = ({ products, title }: ProductCarouselProps) => {
   const [itemsPerSlide, setItemsPerSlide] = useState<number>(1);
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  // Ajusta el número de elementos visibles en función del tamaño de la pantalla
   useEffect(() => {
     const updateItemsPerSlide = () => {
       if (carouselRef.current) {
         const carouselWidth = carouselRef.current.offsetWidth;
-        const productWidth = 465;
+
+        // Detecta el tamaño de la pantalla para aplicar un tamaño diferente dependiendo del punto de interrupción
+        let productWidth: number;
+      
+        if (carouselWidth >= 1536) { // 2xl (pantallas grandes de escritorio, 1536px)
+          productWidth = 465;
+        } else if (carouselWidth >= 1280) { // xl (pantallas de escritorio medianas, 1280px)
+          productWidth = 370;
+        } else if (carouselWidth >= 1024) { // lg (pantallas de tabletas en paisaje, 1024px)
+          productWidth = 290;
+        } else if (carouselWidth >= 768) { // md (tabletas en retrato, 768px)
+          productWidth = 250;
+        } else if (carouselWidth >= 640) { // sm (smartphones, 640px)
+          productWidth = 190;
+        } else { // xs (dispositivos más pequeños, 640px)
+          productWidth = 157;
+        }
+
         setItemsPerSlide(Math.floor(carouselWidth / productWidth)); // Calcula cuántos productos caben sin ser fraccionados
       }
     };
@@ -71,7 +87,7 @@ const ProductCarousel = ({ products, title }: ProductCarouselProps) => {
             .map((_product, index) => {
               const circularIndex = (currentIndex + index) % products.length;
               return (
-                <div key={products[circularIndex].prodId} className="flex-shrink-0 mx-2">
+                <div key={products[circularIndex].prodId} className="flex-shrink-0 mx-1">
                   <Product product={products[circularIndex]} />
                 </div>
               );
@@ -95,7 +111,7 @@ const ProductCarousel = ({ products, title }: ProductCarouselProps) => {
         {products.map((_, i) => {
           return (
             <div
-              className={`size-4 m-1 border-2 border-black rounded-full hover:cursor-pointer ${i === currentIndex ? "bg-black" : ""}`}
+              className={`size-2 sm:size-3 lg:size-4 m-1 border-2 border-black rounded-full hover:cursor-pointer ${i === currentIndex ? "bg-black" : ""}`}
               onClick={() => setCurrentIndex(i)}
               key={i}
             />
