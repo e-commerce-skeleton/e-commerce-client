@@ -55,7 +55,7 @@ function CartIcon() {
 export default function Header() {
   return (
     <>
-      <div className="fixed top-0 left-0 w-screen flex flex-col items-center justify-center bg-red-500 p-2 lg:flex-row lg:justify-between">
+      <div className="z-99 fixed top-0 left-0 w-screen flex flex-col items-center justify-center bg-red-500 p-2 lg:flex-row lg:justify-between">
         <h1 className="text-3xl font-extrabold">e-commerce</h1>
         <div className="w-full flex flex-row items-center justify-around lg:w-auto lg:justify-end">
           <UserIcon />
