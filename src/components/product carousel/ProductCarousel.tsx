@@ -1,4 +1,3 @@
-import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import Product from "../product/Product";
 import { LeftArrowButton, RightArrowButton } from "../buttons/ArrowButtons";
@@ -45,65 +44,68 @@ const ProductCarousel = ({ products, title }: ProductCarouselProps) => {
 
   const nextSlide = () => {
     setCurrentIndex((state) => {
-      const nextIndex = state + 1;
-  
-      // Si hay menos productos de los que caben en pantalla, volver a 0
-      if (itemsPerSlide >= products.length) return 0;
-  
-      // Si el siguiente índice supera la cantidad de productos, volver a 0
-      return nextIndex + itemsPerSlide > products.length ? 0 : nextIndex;
+      const nextIndex = (state + 1) % products.length; // Uso del operador módulo para hacerlo circular
+      return nextIndex;
     });
   };
   
   const prevSlide = () => {
     setCurrentIndex((state) => {
-      const prevIndex = state - 1;
-  
-      // Si hay menos productos de los que caben en pantalla, volver al final
-      if (itemsPerSlide >= products.length) return products.length - itemsPerSlide;
-  
-      // Si el índice es negativo, volver al final de la lista
-      return prevIndex < 0 ? products.length - itemsPerSlide : prevIndex;
+      const prevIndex = (state - 1 + products.length) % products.length; // Uso del operador módulo para hacerlo circular
+      return prevIndex;
     });
   };
 
   return (
     <div className="w-screen flex flex-col items-center bg-gray-100 relative">
-      <div className="text-4xl text-black font-bold">{title}</div>
+      {/* Título */}
+      <div className="text-4xl text-black font-bold mb-4">{title}</div>
+      
+      {/* Carrusel de Productos */}
       <div
         ref={carouselRef}
         className="w-full flex flex-row items-center justify-start overflow-hidden relative"
       >
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentIndex}
-            initial={{ opacity: 0, x: 0 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -475 }}
-            transition={{ duration: 0.3 }}
-            className="w-full h-full flex flex-row justify-center"
-          >
-            {/* Renderiza los productos que caben en la pantalla */}
-            {products
-              .slice(currentIndex, currentIndex + itemsPerSlide)
-              .map((product) => (
-                <div key={product.prodId} className="flex-shrink-0 mx-2">
-                  <Product product={product} />
+        <div className="w-full h-full flex flex-row justify-center">
+          {products
+            .map((_product, index) => {
+              const circularIndex = (currentIndex + index) % products.length;
+              return (
+                <div key={products[circularIndex].prodId} className="flex-shrink-0 mx-2">
+                  <Product product={products[circularIndex]} />
                 </div>
-              ))}
-          </motion.div>
-        </AnimatePresence>
-        
-        {/* Botones Left y Right dentro del carrusel */}
+              );
+            })
+            .slice(0, itemsPerSlide)}
+        </div>
+  
+        {/* BUTTON LEFT */}
         <div className="absolute left-10 top-3/7 transform -translate-y-1/2">
           <LeftArrowButton onClickFunctions={[prevSlide]} />
         </div>
+        
+        {/* BUTTON RIGHT */}
         <div className="absolute right-10 top-3/7 transform -translate-y-1/2">
           <RightArrowButton onClickFunctions={[nextSlide]} />
         </div>
       </div>
+  
+      {/* INDEX MARKERS */}
+      <div className="flex flex-row items-center justify-center mt-4 space-x-2">
+        {products.map((_, i) => {
+          return (
+            <div
+              className={`size-4 m-1 border-2 border-black rounded-full hover:cursor-pointer ${i === currentIndex ? "bg-black" : ""}`}
+              onClick={() => setCurrentIndex(i)}
+              key={i}
+            />
+          );
+        })}
+      </div>
     </div>
   );
+  
+  
 };
 
 export default ProductCarousel;
